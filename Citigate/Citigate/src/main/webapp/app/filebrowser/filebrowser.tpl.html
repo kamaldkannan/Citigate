@@ -1,0 +1,58 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="row">
+			<div class="col-lg-3">
+				<accordion close-others="true">  
+					<accordion-group ng-repeat="group in groups1" is-open="group.label==='CME'">
+						<accordion-heading>
+	            			{{group.label}}<i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+	        			</accordion-heading>
+	        			 <div style="width:100%;background:whitesmoke;border:1px solid lightgray;border-radius:5px;">
+                  <span ng-if="doing_async">...loading...</span>
+                  <abn-tree tree-data="group.children"  expand-level="4" ></abn-tree>
+                </div>
+					</accordion-group> 
+				</accordion>
+			</div>
+			<div class="col-lg-9">
+				<table st-table="rowCollection" class="table table-striped">
+					<thead>
+						<tr>
+							<th st-sort="fileName">File Name</th>
+							<th st-sort="creationDate">Creation Date</th>
+							<th st-sort="modifiedDate">Modified Date</th>
+							<th st-sort="size">Size (KB)</th>
+<!-- 							<th st-sort="location">location</th> -->
+						</tr>
+						<tr>
+							<th><input st-search="'fileName'"
+								placeholder="search for fileName" class="input-sm form-control"
+								type="search" /></th>
+							<th colspan="3"><input st-search placeholder="global search"
+								class="input-sm form-control" type="search" /></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="row in rowCollection">
+							<td>{{row.fileName }}</td>
+							<td>{{row.creationDate |date}}</td>
+							<td>{{row.modifiedDate | date}}</td>
+							<td>{{row.size }}</td>
+<!-- 							<td>{{row.location }}</td> -->
+						</tr>
+					</tbody>
+<!-- 					<tfoot> -->
+<!-- 						<tr> -->
+<!-- 							<td colspan="5" class="text-center"> -->
+<!-- 								<div st-pagination="" st-items-by-page="itemsByPage" -->
+<!-- 									st-displayed-pages="7"></div> -->
+<!-- 							</td> -->
+<!-- 						</tr> -->
+<!-- 					</tfoot> -->
+				</table>
+			</div>
+		</div>
+
+	</div>
+
+</div>
